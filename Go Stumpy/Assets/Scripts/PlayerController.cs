@@ -8,11 +8,11 @@ public class PlayerController : MonoBehaviour
     //Public Variables
     public float baseSpeed = 5f;
     public float baseJumpHeight = 5f;
-    public float maxSuckTime = 10f;
     public InputAction movement;
     public InputAction jump;
     public InputAction useAbility;
     public AbilitiesScript abilities;
+    public ParticleSystem suckParticles;
 
     //Private Variables
     private Rigidbody2D rb;
@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private bool usingAbility = false;
     private float speed;
     private float jumpHeight;
+    private Vector2 faceDir = Vector2.right;
 
     //Enable Input Actions
     private void OnEnable()
@@ -61,14 +62,16 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
         }
         
-        if (useAbility.IsPressed())
+        //Facing Direction
+        if (moveDirection.x > 0)
         {
-            StartCoroutine(UseAbility());
-            usingAbility = true;
+            faceDir = Vector2.right;
+            suckParticles.transform.rotation = Quaternion.Euler(180, -90, 0);
         }
-        else
+        else if (moveDirection.x < 0)
         {
-            usingAbility = false;
+            faceDir = Vector2.left;
+            suckParticles.transform.rotation = Quaternion.Euler(0, -90, 0);
         }
     }
 
@@ -76,37 +79,57 @@ public class PlayerController : MonoBehaviour
     {
         //Move Player
         rb.velocity = new Vector2(moveDirection.x * speed, rb.velocity.y);
+
+        //Use Ability
+        if (useAbility.IsPressed())
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, faceDir, 10f);
+
+            //First Ability Frame
+            if (!usingAbility)
+            {   
+                usingAbility = true;
+                suckParticles.Play();
+                speed /= 2;
+                jumpHeight /= 2;
+            }
+            
+            //Activate Ability
+            /*if (hit.collider != null && hit.collider.CompareTag("Jumpy"))
+            {
+                if(abilityOn)
+                    ResetAbility();
+                jumpHeight = abilities.jumpBoost + baseJumpHeight;
+                abilities.jumpParticles.Play();
+                abilityOn = true;
+            }
+            else if (hit.collider != null && hit.collider.CompareTag("Speedy"))
+            {
+                if(abilityOn)
+                    ResetAbility();
+                speed = abilities.speedBoost + baseSpeed;
+                abilities.speedParticles.Play();
+                abilityOn = true;
+            }*/
+        }
+        else
+        {
+            suckParticles.Stop();
+            usingAbility = false;
+            if(!abilityOn)
+            {
+                speed = baseSpeed;
+                jumpHeight = baseJumpHeight;
+            }
+        }
     }
-    
-    //Kirby Ability
-    private IEnumerator UseAbility()
+
+    void ResetAbility()
     {
-        Debug.Log("Ability Used");
-        //Detect Enemy
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 10f);
-
-        //Deactivate Previous Ability
-        if (abilityOn)
-        {
-            abilityOn = false;
-            speed = baseSpeed;
-            jumpHeight = baseJumpHeight;
-        }
-
-        //Activate Ability
-        if (hit.collider != null && hit.collider.CompareTag("Jumpy"))
-        {
-            jumpHeight += abilities.jumpBoost;
-            abilities.jumpParticles.Play();
-            abilityOn = true;
-        }
-        else if (hit.collider != null && hit.collider.CompareTag("Speedy"))
-        {
-            speed += abilities.speedBoost;
-            abilities.speedParticles.Play();
-            abilityOn = true;
-        }
-
-        yield return new WaitForSeconds(maxSuckTime);
+        speed = baseSpeed;
+        jumpHeight = baseJumpHeight;
+        abilityOn = false;
+        abilities.jumpParticles.Stop();
+        abilities.speedParticles.Stop();
     }
 }
