@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     //Public Variables
     public float baseSpeed = 5f;
     public float baseJumpHeight = 5f;
+    public float abilityDivisor = 2f;
     public InputAction movement;
     public InputAction jump;
     public InputAction useAbility;
@@ -90,8 +91,8 @@ public class PlayerController : MonoBehaviour
             {   
                 usingAbility = true;
                 suckParticles.Play();
-                speed /= 2;
-                jumpHeight /= 2;
+                speed /= abilityDivisor;
+                jumpHeight /= abilityDivisor;
             }
             
             //Activate Ability
