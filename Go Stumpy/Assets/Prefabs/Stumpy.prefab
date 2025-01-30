@@ -5004,6 +5004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 5
   baseJumpHeight: 6
+  abilityDivisor: 2
   movement:
     m_Name: Movement
     m_Type: 0
@@ -5085,6 +5086,23 @@ MonoBehaviour:
       m_Processors: 
       m_Groups: 
       m_Action: Use Ability
+      m_Flags: 0
+    m_Flags: 0
+  pauseGame:
+    m_Name: Pause Game
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: dfcbcdfa-183c-41e2-8d93-2535532180b7
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: faf18643-ad2e-45a9-b588-8573b508a6fe
+      m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause Game
       m_Flags: 0
     m_Flags: 0
   abilities: {fileID: 11400000, guid: c6ed609b54dfef14db7856489c44628f, type: 2}
