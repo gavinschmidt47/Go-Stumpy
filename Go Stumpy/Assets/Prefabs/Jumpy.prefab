@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6118395752710402207}
   m_Layer: 0
   m_Name: Jumpy
-  m_TagString: Untagged
+  m_TagString: Jumpy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

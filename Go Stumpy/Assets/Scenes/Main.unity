@@ -410,6 +410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Speedy
       objectReference: {fileID: 0}
+    - target: {fileID: 4491548297987697557, guid: 7857d30566d82324bb5798048d5f9b17, type: 3}
+      propertyPath: m_TagString
+      value: Speedy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -498,6 +502,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 738900580651790873, guid: f5100b77529719642b695a2893fcd006, type: 3}
       propertyPath: m_Name
+      value: Jumpy
+      objectReference: {fileID: 0}
+    - target: {fileID: 738900580651790873, guid: f5100b77529719642b695a2893fcd006, type: 3}
+      propertyPath: m_TagString
       value: Jumpy
       objectReference: {fileID: 0}
     - target: {fileID: 5208408303155323118, guid: f5100b77529719642b695a2893fcd006, type: 3}

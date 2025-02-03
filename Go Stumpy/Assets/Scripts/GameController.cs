@@ -10,8 +10,6 @@ public class GameController : MonoBehaviour
     public GameObject stumpy;
 
     //Private Variables
-    private bool paused = false;
-    private bool playerCBool;
 
     void onEnable()
     {
@@ -26,7 +24,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerCBool = stumpy.GetComponent<PlayerController>().enabled;
+        stumpy.GetComponent<PlayerController>().enabled = true;
     }
 
     // Update is called once per frame
@@ -34,7 +32,6 @@ public class GameController : MonoBehaviour
     {
         if (pauseButton.triggered)
         {
-
             stumpy.GetComponent<PlayerController>().enabled = !(stumpy.GetComponent<PlayerController>().enabled);
         }
     }

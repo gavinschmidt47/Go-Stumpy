@@ -6,22 +6,18 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     //Public Variables
-    public float baseSpeed = 5f;
-    public float baseJumpHeight = 5f;
     public float abilityDivisor = 2f;
     public InputAction movement;
     public InputAction jump;
     public InputAction useAbility;
     public AbilitiesScript abilities;
+    public GameInfo gameInfo;
     public ParticleSystem suckParticles;
 
     //Private Variables
+    private bool usingAbility = false;
     private Rigidbody2D rb;
     private Vector2 moveDirection;
-    private bool abilityOn = false;
-    private bool usingAbility = false;
-    private float speed;
-    private float jumpHeight;
     private Vector2 faceDir = Vector2.right;
 
     //Enable Input Actions
@@ -49,9 +45,7 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        //set speed and jump height
-        speed = baseSpeed;
-        jumpHeight = baseJumpHeight;
+        gameInfo.abilityOn = false;
     }
 
     void Update()
@@ -60,7 +54,7 @@ public class PlayerController : MonoBehaviour
         moveDirection = movement.ReadValue<Vector2>();
         if (jump.triggered && Mathf.Abs(rb.velocity.y) < 0.001f)
         {
-            rb.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * gameInfo.currJump, ForceMode2D.Impulse);
         }
         
         //Facing Direction
@@ -79,7 +73,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //Move Player
-        rb.velocity = new Vector2(moveDirection.x * speed, rb.velocity.y);
+        rb.velocity = new Vector2(moveDirection.x * gameInfo.currSpeed, rb.velocity.y);
 
         //Use Ability
         if (useAbility.IsPressed())
@@ -91,46 +85,65 @@ public class PlayerController : MonoBehaviour
             {   
                 usingAbility = true;
                 suckParticles.Play();
-                speed /= abilityDivisor;
-                jumpHeight /= abilityDivisor;
+                gameInfo.currSpeed /= abilityDivisor;
+                gameInfo.currJump /= abilityDivisor;
             }
             
             //Activate Ability
-            /*if (hit.collider != null && hit.collider.CompareTag("Jumpy"))
+            if (hit.collider != null && hit.collider.CompareTag("Jumpy"))
             {
-                if(abilityOn)
+                if(gameInfo.abilityOn)
                     ResetAbility();
-                jumpHeight = abilities.jumpBoost + baseJumpHeight;
+                gameInfo.currJump = abilities.jumpBoost + gameInfo.baseJumpHeight;
                 abilities.jumpParticles.Play();
-                abilityOn = true;
+                gameInfo.abilityOn = true;
+                gameInfo.currAbility = "Jumpy";
             }
             else if (hit.collider != null && hit.collider.CompareTag("Speedy"))
             {
-                if(abilityOn)
+                if(gameInfo.abilityOn)
                     ResetAbility();
-                speed = abilities.speedBoost + baseSpeed;
+                gameInfo.currSpeed = abilities.speedBoost + gameInfo.baseSpeed;
                 abilities.speedParticles.Play();
-                abilityOn = true;
-            }*/
+                gameInfo.abilityOn = true;
+                gameInfo.currAbility = "Speedy";
+            }
         }
         else
         {
-            suckParticles.Stop();
-            usingAbility = false;
-            if(!abilityOn)
+            //first Non Ability Frame
+            if (usingAbility)
             {
-                speed = baseSpeed;
-                jumpHeight = baseJumpHeight;
+                suckParticles.Stop();
+                usingAbility = false;
+                if(!gameInfo.abilityOn)
+                {
+                    gameInfo.currSpeed = gameInfo.baseSpeed;
+                    gameInfo.currJump = gameInfo.baseJumpHeight;
+                }
             }
         }
     }
 
     void ResetAbility()
     {
-        speed = baseSpeed;
-        jumpHeight = baseJumpHeight;
-        abilityOn = false;
+        gameInfo.currSpeed = gameInfo.baseSpeed;
+        gameInfo.currJump = gameInfo.baseJumpHeight;
+        gameInfo.abilityOn = false;
         abilities.jumpParticles.Stop();
         abilities.speedParticles.Stop();
+    }
+
+    //Collision
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (gameInfo.abilityOn && !gameInfo.invincible)   
+        {
+            if (other.gameObject.CompareTag("Jumpy") || other.gameObject.CompareTag("Speedy"))
+            {
+                gameInfo.abilityOn = false;
+                ResetAbility();
+            }
+        }
     }
 }
