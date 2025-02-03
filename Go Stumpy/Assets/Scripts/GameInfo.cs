@@ -12,4 +12,7 @@ public class GameInfo : ScriptableObject {
     public bool abilityOn = false;
     public string currAbility;
     public bool invincible = false;
+
+    //Game Variables
+    public bool paused = false;
 }

@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
     //Public Variables
     public InputAction pauseButton;
     public GameObject stumpy;
+    public GameInfo gameInfo;
+    public float pauseTimeScale = 0.1f;
 
     //Private Variables
 
@@ -33,6 +35,21 @@ public class GameController : MonoBehaviour
         if (pauseButton.triggered)
         {
             stumpy.GetComponent<PlayerController>().enabled = !(stumpy.GetComponent<PlayerController>().enabled);
+            if (!gameInfo.paused)
+            {
+                Pause();
+            }
         }
+
+    }
+
+    private void Pause()
+    {
+        Time.timeScale = pauseTimeScale;
+        gameInfo.paused = true;
+
+        //Enable Cursor
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

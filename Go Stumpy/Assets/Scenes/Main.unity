@@ -431,6 +431,46 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: bde784f30909d92478dcd504a3f748e6, type: 3}
+    - target: {fileID: 5100028724766218723, guid: b415b57b62b6b2c41936639422a3ce9e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6097492
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100028724766218723, guid: b415b57b62b6b2c41936639422a3ce9e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.46318364
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100028724766218723, guid: b415b57b62b6b2c41936639422a3ce9e, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0042715073
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100028724766218723, guid: b415b57b62b6b2c41936639422a3ce9e, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.087262005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100028724766218723, guid: b415b57b62b6b2c41936639422a3ce9e, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100028724766218723, guid: b415b57b62b6b2c41936639422a3ce9e, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100028724766218723, guid: b415b57b62b6b2c41936639422a3ce9e, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100028724766218723, guid: b415b57b62b6b2c41936639422a3ce9e, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100028724766218723, guid: b415b57b62b6b2c41936639422a3ce9e, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100028724766218723, guid: b415b57b62b6b2c41936639422a3ce9e, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.64
+      objectReference: {fileID: 0}
     - target: {fileID: 7278689090218335258, guid: b415b57b62b6b2c41936639422a3ce9e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.7719
@@ -449,7 +489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7278689090218335258, guid: b415b57b62b6b2c41936639422a3ce9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.914
       objectReference: {fileID: 0}
     - target: {fileID: 7278689090218335258, guid: b415b57b62b6b2c41936639422a3ce9e, type: 3}
       propertyPath: m_LocalPosition.z

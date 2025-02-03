@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class JumpyController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //Public Variables
+    public GameInfo gameInfo;
 
     // Update is called once per frame
     void Update()

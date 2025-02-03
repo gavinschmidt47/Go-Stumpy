@@ -45,7 +45,11 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        gameInfo.abilityOn = false;
+        if (gameInfo.abilityOn)
+        {
+            gameInfo.currJump = gameInfo.baseJumpHeight;
+            gameInfo.currSpeed = gameInfo.baseSpeed;
+        }
     }
 
     void Update()
