@@ -39,6 +39,10 @@ public class GameController : MonoBehaviour
             {
                 Pause();
             }
+            else
+            {
+                Unpause();
+            }
         }
 
     }
@@ -51,5 +55,15 @@ public class GameController : MonoBehaviour
         //Enable Cursor
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void Unpause()
+    {
+        Time.timeScale = 1f;
+        gameInfo.paused = false;
+
+        //Diable Cursor
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
