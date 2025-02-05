@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: AbilitiesScriptableObject
   m_EditorClassIdentifier: 
   jumpBoost: 5
-  jumpParticles: {fileID: 0}
   speedBoost: 5
-  speedParticles: {fileID: 0}
