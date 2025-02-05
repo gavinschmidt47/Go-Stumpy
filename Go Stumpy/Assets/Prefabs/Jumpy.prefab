@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameInfo: {fileID: 11400000, guid: 204ef1ff0f5fb5845a95883039197991, type: 2}
+  deathParticles: {fileID: 0}
 --- !u!61 &972344786431753607
 BoxCollider2D:
   m_ObjectHideFlags: 0

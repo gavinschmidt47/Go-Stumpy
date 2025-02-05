@@ -13,12 +13,17 @@ public class PlayerController : MonoBehaviour
     public AbilitiesScript abilities;
     public GameInfo gameInfo;
     public ParticleSystem suckParticles;
+    public ParticleSystem deathParticles;
+    public ParticleSystem jumpParticles;
+    public ParticleSystem speedParticles;
 
     //Private Variables
     private bool usingAbility = false;
     private Rigidbody2D rb;
     private Vector2 moveDirection;
     private Vector2 faceDir = Vector2.right;
+    private float savedSpeed;
+    private float savedJump;
 
     //Enable Input Actions
     private void OnEnable()
@@ -92,28 +97,44 @@ public class PlayerController : MonoBehaviour
             {   
                 usingAbility = true;
                 suckParticles.Play();
+                savedSpeed = gameInfo.currSpeed;
+                savedJump = gameInfo.currJump;
                 gameInfo.currSpeed /= abilityDivisor;
                 gameInfo.currJump /= abilityDivisor;
             }
             
             //Activate Ability
-            if (hit.collider != null && hit.collider.CompareTag("Jumpy"))
+            if (hit.collider != null)
             {
-                if(gameInfo.abilityOn)
-                    ResetAbility();
-                gameInfo.currJump = abilities.jumpBoost + gameInfo.baseJumpHeight;
-                abilities.jumpParticles.Play();
-                gameInfo.abilityOn = true;
-                gameInfo.currAbility = "Jumpy";
-            }
-            else if (hit.collider != null && hit.collider.CompareTag("Speedy"))
-            {
-                if(gameInfo.abilityOn)
-                    ResetAbility();
-                gameInfo.currSpeed = abilities.speedBoost + gameInfo.baseSpeed;
-                abilities.speedParticles.Play();
-                gameInfo.abilityOn = true;
-                gameInfo.currAbility = "Speedy";
+                Debug.Log("Hit: " + hit.collider.name);
+                if (hit.collider.CompareTag("Jumpy"))
+                {
+                    if(gameInfo.abilityOn)
+                        ResetAbility();
+                    gameInfo.currJump = abilities.jumpBoost + gameInfo.baseJumpHeight;
+                    savedJump = gameInfo.currJump;
+                    jumpParticles.Play();
+                    gameInfo.abilityOn = true;
+                    gameInfo.currAbility = "Jumpy";
+                    suckParticles.Stop();
+                    usingAbility = false;
+                    Instantiate(deathParticles, hit.collider.transform.position, Quaternion.identity);
+                    Destroy(hit.collider.gameObject);
+                }
+                else if (hit.collider != null && hit.collider.CompareTag("Speedy"))
+                {
+                    if(gameInfo.abilityOn)
+                        ResetAbility();
+                    gameInfo.currSpeed = abilities.speedBoost + gameInfo.baseSpeed;
+                    savedSpeed = gameInfo.currSpeed;
+                    speedParticles.Play();
+                    gameInfo.abilityOn = true;
+                    gameInfo.currAbility = "Speedy";
+                    suckParticles.Stop();
+                    usingAbility = false;
+                    Instantiate(deathParticles, hit.collider.transform.position, Quaternion.identity);
+                    Destroy(hit.collider.gameObject);
+                }
             }
         }
         else
@@ -128,6 +149,16 @@ public class PlayerController : MonoBehaviour
                     gameInfo.currSpeed = gameInfo.baseSpeed;
                     gameInfo.currJump = gameInfo.baseJumpHeight;
                 }
+                else if (gameInfo.currAbility == "Jumpy")
+                {
+                    gameInfo.currJump = savedJump;
+                    gameInfo.currSpeed = gameInfo.baseSpeed;
+                }
+                else if (gameInfo.currAbility == "Speedy")
+                {
+                    gameInfo.currJump = gameInfo.baseJumpHeight;
+                    gameInfo.currSpeed = savedSpeed;
+                }
             }
         }
     }
@@ -137,8 +168,8 @@ public class PlayerController : MonoBehaviour
         gameInfo.currSpeed = gameInfo.baseSpeed;
         gameInfo.currJump = gameInfo.baseJumpHeight;
         gameInfo.abilityOn = false;
-        abilities.jumpParticles.Stop();
-        abilities.speedParticles.Stop();
+        jumpParticles.Stop();
+        speedParticles.Stop();
     }
 
     //Collision

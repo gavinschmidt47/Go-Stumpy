@@ -30,6 +30,11 @@ public class GameController : MonoBehaviour
     void Start()
     {
         stumpy.GetComponent<PlayerController>().enabled = true;
+        gameInfo.paused = false;
+        gameInfo.currSpeed = gameInfo.baseSpeed;
+        gameInfo.currJump = gameInfo.baseJumpHeight;
+        gameInfo.abilityOn = false;
+        gameInfo.currAbility = "";
     }
 
     // Update is called once per frame
