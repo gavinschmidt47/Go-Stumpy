@@ -13,6 +13,13 @@ public class GameInfo : ScriptableObject {
     public string currAbility;
     public bool invincible = false;
 
+    //Jumpy Variables
+    public float jumpyH = 10f;
+    public float jumpyS = 10f;
+
+    //Speedy Variables
+    public float speedyS = 10f;
+
     //Game Variables
     public bool paused = false;
 }

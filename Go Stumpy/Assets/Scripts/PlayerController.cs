@@ -41,6 +41,9 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
+        // Freeze rotation
+        rb.freezeRotation = true;
+
         //Disable Cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

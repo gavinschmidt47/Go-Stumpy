@@ -323,8 +323,10 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   stumpy: {fileID: 469411627}
-  gameInfo: {fileID: 0}
-  pauseTimeScale: 0.1
+  gameInfo: {fileID: 11400000, guid: 204ef1ff0f5fb5845a95883039197991, type: 2}
+  pauseTimeScale: 0.001
+  pausePanel: {fileID: 1153434097}
+  resumeButton: {fileID: 1477723828}
 --- !u!4 &237295975
 Transform:
   m_ObjectHideFlags: 0
@@ -725,7 +727,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 5.0204, y: 0.6547749}
+  m_Offset: {x: 0.6274525, y: 0.61855924}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -736,7 +738,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.006376, y: 2.9915557}
+  m_Size: {x: 0.22048163, y: 2.8173292}
   m_EdgeRadius: 0
 --- !u!4 &926374091
 Transform:
@@ -747,8 +749,8 @@ Transform:
   m_GameObject: {fileID: 926374089}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -1.24, y: -1.84, z: 0.026980365}
-  m_LocalScale: {x: 0.67499995, y: 1.690315, z: 1}
+  m_LocalPosition: {x: -1.2923, y: 1.3073, z: 0.026980365}
+  m_LocalScale: {x: 6.755889, y: 1.7748307, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 775618490}
@@ -770,7 +772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1153434098
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1158,7 +1160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1596514450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3016,6 +3018,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 469411632}
+  smoothSpeed: 0.025
+  offset: {x: 0, y: 0, z: -5}
+  leftBottom: {x: -4, y: -1}
+  rightTop: {x: 10, y: 10}
 --- !u!1 &1967735960
 GameObject:
   m_ObjectHideFlags: 0
@@ -3126,7 +3132,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2139471101}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d3731c80850fa6840b4f2edf76de4c5a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3187,11 +3193,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3090263622235583264, guid: 7857d30566d82324bb5798048d5f9b17, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.40759492
+      value: -3.68
       objectReference: {fileID: 0}
     - target: {fileID: 3090263622235583264, guid: 7857d30566d82324bb5798048d5f9b17, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.47797328
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 3090263622235583264, guid: 7857d30566d82324bb5798048d5f9b17, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3369,7 +3375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5208408303155323118, guid: f5100b77529719642b695a2893fcd006, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.40759492
+      value: 3.98
       objectReference: {fileID: 0}
     - target: {fileID: 5208408303155323118, guid: f5100b77529719642b695a2893fcd006, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3407,6 +3413,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6118395752710402207, guid: f5100b77529719642b695a2893fcd006, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 469411632}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 5
   baseJumpHeight: 5
-  currSpeed: 0
-  currJump: 0
+  currSpeed: 5
+  currJump: 5
   abilityOn: 0
   currAbility: 
   invincible: 0
+  jumpyH: 80
+  jumpyS: 1
+  speedyS: 2
+  paused: 1

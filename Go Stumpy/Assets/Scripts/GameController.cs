@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -10,15 +11,17 @@ public class GameController : MonoBehaviour
     public GameObject stumpy;
     public GameInfo gameInfo;
     public float pauseTimeScale = 0.1f;
+    public GameObject pausePanel;
+    public Button resumeButton;
 
     //Private Variables
 
-    void onEnable()
+    void OnEnable()
     {
         pauseButton.Enable();
     }
 
-    void onDisable()
+    void OnDisable()
     {
         pauseButton.Disable();
     }
@@ -55,6 +58,12 @@ public class GameController : MonoBehaviour
         //Enable Cursor
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        //Set Panel
+        pausePanel.SetActive(true);
+
+        //Resume Button
+        resumeButton.onClick.AddListener(Unpause);
     }
 
     private void Unpause()
@@ -65,5 +74,11 @@ public class GameController : MonoBehaviour
         //Diable Cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        //Set Panel
+        pausePanel.SetActive(false);
+
+        //Resume Button
+        resumeButton.onClick.RemoveListener(Unpause);
     }
 }
