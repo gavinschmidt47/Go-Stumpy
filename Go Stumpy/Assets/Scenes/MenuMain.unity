@@ -1314,7 +1314,6 @@ MonoBehaviour:
   aboutB: {fileID: 418045972}
   exitB: {fileID: 1486675659}
   backB: {fileID: 1871069910}
-  isInvincible: {fileID: 0}
   menuPanel: {fileID: 1960175157}
   aboutPanel: {fileID: 1532390478}
   optionsPanel: {fileID: 672980695}
@@ -1345,6 +1344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1077415206}
   - component: {fileID: 1077415207}
+  - component: {fileID: 1077415208}
   m_Layer: 5
   m_Name: Invincibility Toggle
   m_TagString: Untagged
@@ -1421,6 +1421,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &1077415208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077415205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a7ee934bead4444ac733c2e77303a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameInfo: {fileID: 11400000, guid: 204ef1ff0f5fb5845a95883039197991, type: 2}
 --- !u!1 &1182608234
 GameObject:
   m_ObjectHideFlags: 0

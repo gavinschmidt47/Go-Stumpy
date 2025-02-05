@@ -45,7 +45,6 @@ public class EnemyController : MonoBehaviour
         {
             if (IsGrounded())
             {
-                Debug.Log("Jump");
                 rb.AddForce(Vector2.up * thisJump, ForceMode2D.Impulse);
             }
             rb.velocity = new Vector2(moveDirection.x * thisSpeed, rb.velocity.y);

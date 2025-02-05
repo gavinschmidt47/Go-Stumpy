@@ -12,7 +12,6 @@ public class MenuMainController : MonoBehaviour
     public Button aboutB;
     public Button exitB;
     public Button backB;
-    public Toggle isInvincible;
     public GameObject menuPanel;
     public GameObject aboutPanel;
     public GameObject optionsPanel;
@@ -34,6 +33,13 @@ public class MenuMainController : MonoBehaviour
         aboutPanel.SetActive(false);
         optionsPanel.SetActive(false);
         back.SetActive(false);
+
+        //Set GameInfo
+        gameInfo.paused = false;
+        gameInfo.currSpeed = gameInfo.baseSpeed;
+        gameInfo.currJump = gameInfo.baseJumpHeight;
+        gameInfo.abilityOn = false;
+        gameInfo.currAbility = "";
     }
 
     void Update()
@@ -55,7 +61,6 @@ public class MenuMainController : MonoBehaviour
     //Buttons
     void Play()
     {
-        gameInfo.invincible = isInvincible.isOn;
         SceneManager.LoadScene("Main");
     }
     void Options()
@@ -65,9 +70,6 @@ public class MenuMainController : MonoBehaviour
         aboutPanel.SetActive(false);
         optionsPanel.SetActive(true);
         back.SetActive(true);
-
-        //Options
-        
     }
     void About()
     {
