@@ -40,6 +40,10 @@ public class MenuMainController : MonoBehaviour
         gameInfo.currJump = gameInfo.baseJumpHeight;
         gameInfo.abilityOn = false;
         gameInfo.currAbility = "";
+
+        //Set Cursor
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void Update()

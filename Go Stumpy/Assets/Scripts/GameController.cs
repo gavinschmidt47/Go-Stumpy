@@ -11,17 +11,21 @@ public class GameController : MonoBehaviour
     public InputAction pauseButton;
     public GameObject stumpy;
     public GameInfo gameInfo;
+    public AbilitiesScript abilities;
     public float pauseTimeScale = 0.1f;
     public GameObject pausePanel;
     public GameObject optionsPanel;
+    public GameObject warningPanel;
     public Button resumeButton;
     public Button optionsButton;
     public Button backButton;
-    public Toggle invincibleToggle;
-    public TMP_Dropdown abilityDropdown;
+    public Button goBackButton;
+    public Button ContinueButton;
+    public ParticleSystem jumpParticles;
+    public ParticleSystem speedParticles;
 
     //Private Variables
-
+    private bool firstOpt = true;
     void OnEnable()
     {
         pauseButton.Enable();
@@ -44,6 +48,7 @@ public class GameController : MonoBehaviour
         //Set Panel
         pausePanel.SetActive(false);
         optionsPanel.SetActive(false);
+        warningPanel.SetActive(false);
 
         gameInfo.paused = false;
     }
@@ -81,11 +86,10 @@ public class GameController : MonoBehaviour
 
         //Resume Button
         resumeButton.onClick.AddListener(Unpause);
-        optionsButton.onClick.AddListener(Options);
-        if (backButton.onClick.GetPersistentEventCount() > 0)
-        {
-            backButton.onClick.RemoveAllListeners();
-        }
+        if (firstOpt)
+            optionsButton.onClick.AddListener(Warning);
+        else 
+            optionsButton.onClick.AddListener(Options);
     }
 
     private void Unpause()
@@ -104,6 +108,38 @@ public class GameController : MonoBehaviour
         //Resume Button
         resumeButton.onClick.RemoveListener(Unpause);
         optionsButton.onClick.RemoveListener(Options);
+
+        //New Abilities
+        if (!gameInfo.abilityOn)
+        {
+            gameInfo.currJump = gameInfo.baseJumpHeight;
+            gameInfo.currSpeed = gameInfo.baseSpeed;
+        }
+        else
+        {
+            if (gameInfo.currAbility == "Jumpy")
+            {
+                gameInfo.currJump = abilities.jumpBoost + gameInfo.baseJumpHeight;
+                gameInfo.currSpeed = gameInfo.baseSpeed;
+                jumpParticles.Play();
+            }
+            else if (gameInfo.currAbility == "Speedy")
+            {
+                gameInfo.currJump = gameInfo.baseJumpHeight;
+                gameInfo.currSpeed = abilities.speedBoost + gameInfo.baseSpeed;
+                speedParticles.Play();
+            }
+        }
+    }
+
+    private void Warning()
+    {
+        //set Panel
+        warningPanel.SetActive(true);
+
+        //Set Buttons
+        goBackButton.onClick.AddListener(GoBack);
+        ContinueButton.onClick.AddListener(Options);
     }
 
     private void Options()
@@ -111,13 +147,38 @@ public class GameController : MonoBehaviour
         //set Panel
         pausePanel.SetActive(false);
         optionsPanel.SetActive(true);
+        warningPanel.SetActive(false);
 
-        //Set Options
-        invincibleToggle.isOn = gameInfo.invincible;
-        abilityDropdown.value = gameInfo.currAbility == "Speedy" ? 1 : gameInfo.currAbility == "Jumpy" ? 2 : 0;
+        //Reset Cheats
+        if (firstOpt)
+        {
+            gameInfo.invincible = false;
+            gameInfo.setCurrAbility(0);
+            firstOpt = false;
+        }
 
-        //Back Button
-        backButton.onClick.RemoveAllListeners();
-        backButton.onClick.AddListener(Pause);
+        //Set Buttons
+        backButton.onClick.AddListener(Back);
+        goBackButton.onClick.RemoveListener(GoBack);
+        ContinueButton.onClick.RemoveListener(Options);
+    }
+
+    private void Back()
+    {
+        //set Panel
+        pausePanel.SetActive(true);
+        optionsPanel.SetActive(false);
+        warningPanel.SetActive(false);
+
+        //Set Buttons
+        backButton.onClick.RemoveListener(Back);
+    }
+    private void GoBack()
+    {
+        //set Panel
+        warningPanel.SetActive(false);
+
+        //Set Buttons
+        goBackButton.onClick.RemoveListener(GoBack);
     }
 }

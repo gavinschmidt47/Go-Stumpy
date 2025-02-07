@@ -7,6 +7,7 @@ TagManager:
   - Jumpy
   - Speedy
   - KillZone
+  - BossStageChange
   layers:
   - Default
   - TransparentFX

@@ -201,6 +201,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (!gameInfo.invincible)
         {
+            //need death
             if (other.gameObject.CompareTag("Jumpy") || other.gameObject.CompareTag("Speedy"))
                 SceneManager.LoadScene("MenuMain");
         }
@@ -211,7 +212,12 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("KillZone"))
         {
+            //need death
             SceneManager.LoadScene("MenuMain");
+        }
+        if (other.gameObject.CompareTag("BossStageChange"))
+        {
+            SceneManager.LoadScene("Boss");
         }
     }
 }
