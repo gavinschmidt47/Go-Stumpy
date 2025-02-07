@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Jumpy
   - Speedy
+  - KillZone
   layers:
   - Default
   - TransparentFX

@@ -9,9 +9,9 @@ public class GameInfo : ScriptableObject {
     public float baseJumpHeight = 5f;
     public float currSpeed;
     public float currJump;
-    public bool abilityOn = false;
+    public bool abilityOn;
     public string currAbility;
-    public bool invincible = false;
+    public bool invincible;
 
     //Jumpy Variables
     public float jumpyH = 10f;
@@ -21,7 +21,7 @@ public class GameInfo : ScriptableObject {
     public float speedyS = 10f;
 
     //Game Variables
-    public bool paused = false;
+    public bool paused;
 
     //Functions
     public void setCurrAbility(int ability) {

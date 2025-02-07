@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7bee40ba048d541ae6f7853b5cf7c4, type: 3}
   m_Name: AbilitiesScriptableObject
   m_EditorClassIdentifier: 
-  jumpBoost: 5
+  jumpBoost: 1
   speedBoost: 5

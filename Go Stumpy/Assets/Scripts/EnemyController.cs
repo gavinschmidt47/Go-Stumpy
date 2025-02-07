@@ -6,7 +6,6 @@ public class EnemyController : MonoBehaviour
 {
     //Public Variables
     public GameInfo gameInfo;
-    public ParticleSystem deathParticles;
 
     //Private Variables
     private Rigidbody2D rb;
@@ -16,11 +15,12 @@ public class EnemyController : MonoBehaviour
     private Vector2 currVel;
     private float thisSpeed;
     private float thisJump;
+    private bool active = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        ID = gameObject.name;   
+        ID = gameObject.tag;   
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
         player = GameObject.Find("Stumpy").transform;
@@ -40,18 +40,30 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         moveDirection = (player.position - transform.position).normalized;
-        
-        if (ID == "Jumpy")
-        {
-            if (IsGrounded())
+
+        if (active)
+        {    
+            if (ID == "Jumpy")
             {
-                rb.AddForce(Vector2.up * thisJump, ForceMode2D.Impulse);
+                if (IsGrounded())
+                {
+                    rb.AddForce(Vector2.up * thisJump, ForceMode2D.Impulse);
+                }
+                rb.velocity = new Vector2(moveDirection.x * thisSpeed, rb.velocity.y);
             }
-            rb.velocity = new Vector2(moveDirection.x * thisSpeed, rb.velocity.y);
+            else if (ID == "Speedy")
+            {
+                rb.velocity = new Vector2(moveDirection.x * thisSpeed, rb.velocity.y);
+            }
         }
-        else if (ID == "Speedy")
+        else
         {
-            rb.velocity = new Vector2(moveDirection.x * thisSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            if (Vector2.Distance(player.position, transform.position) < 10)
+            {
+                active = true;
+                Debug.Log("Active");
+            }
         }
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class PlayerController : MonoBehaviour
     public AbilitiesScript abilities;
     public GameInfo gameInfo;
     public ParticleSystem suckParticles;
-    public ParticleSystem deathParticles;
     public ParticleSystem jumpParticles;
     public ParticleSystem speedParticles;
 
@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 faceDir = Vector2.right;
     private float savedSpeed;
     private float savedJump;
+    
 
     //Enable Input Actions
     private void OnEnable()
@@ -100,7 +101,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //Move Player
-        rb.velocity = new Vector2(moveDirection.x * gameInfo.currSpeed, rb.velocity.y);
+        rb.AddForce(new Vector2(moveDirection.x * gameInfo.currSpeed, 0));
 
         //Use Ability
         if (useAbility.IsPressed())
@@ -133,7 +134,6 @@ public class PlayerController : MonoBehaviour
                     gameInfo.currAbility = "Jumpy";
                     suckParticles.Stop();
                     usingAbility = false;
-                    Instantiate(deathParticles, hit.collider.transform.position, Quaternion.identity);
                     Destroy(hit.collider.gameObject);
                 }
                 else if (hit.collider != null && hit.collider.CompareTag("Speedy"))
@@ -147,7 +147,6 @@ public class PlayerController : MonoBehaviour
                     gameInfo.currAbility = "Speedy";
                     suckParticles.Stop();
                     usingAbility = false;
-                    Instantiate(deathParticles, hit.collider.transform.position, Quaternion.identity);
                     Destroy(hit.collider.gameObject);
                 }
             }
@@ -190,6 +189,8 @@ public class PlayerController : MonoBehaviour
     //Collision
     void OnCollisionEnter2D(Collision2D other)
     {
+        
+        // Determine which side was hit
         if (gameInfo.abilityOn && !gameInfo.invincible)   
         {
             if (other.gameObject.CompareTag("Jumpy") || other.gameObject.CompareTag("Speedy"))
@@ -197,6 +198,20 @@ public class PlayerController : MonoBehaviour
                 gameInfo.abilityOn = false;
                 ResetAbility();
             }
+        }
+        else if (!gameInfo.invincible)
+        {
+            if (other.gameObject.CompareTag("Jumpy") || other.gameObject.CompareTag("Speedy"))
+                SceneManager.LoadScene("MenuMain");
+        }
+        else if (gameInfo.invincible)
+        {
+            if (other.gameObject.CompareTag("Jumpy") || other.gameObject.CompareTag("Speedy"))
+                Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("KillZone"))
+        {
+            SceneManager.LoadScene("MenuMain");
         }
     }
 }
