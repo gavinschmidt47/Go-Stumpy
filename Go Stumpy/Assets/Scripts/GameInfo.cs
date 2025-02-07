@@ -22,4 +22,26 @@ public class GameInfo : ScriptableObject {
 
     //Game Variables
     public bool paused = false;
+
+    //Functions
+    public void setCurrAbility(int ability) {
+        switch (ability) {
+            case 0:
+                currAbility = "";
+                abilityOn = false;
+                break;
+            case 1:
+                currAbility = "Speedy";
+                abilityOn = true;
+                break;
+            case 2:
+                currAbility = "Jumpy";
+                abilityOn = true;
+                break;
+        }
+    }
+
+    public void setInvincible(bool inv) {
+        invincible = inv;
+    }
 }

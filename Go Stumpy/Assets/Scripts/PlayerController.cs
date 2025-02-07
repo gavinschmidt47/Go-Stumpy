@@ -58,6 +58,21 @@ public class PlayerController : MonoBehaviour
             gameInfo.currJump = gameInfo.baseJumpHeight;
             gameInfo.currSpeed = gameInfo.baseSpeed;
         }
+        else
+        {
+            if (gameInfo.currAbility == "Jumpy")
+            {
+                gameInfo.currJump = abilities.jumpBoost + gameInfo.baseJumpHeight;
+                gameInfo.currSpeed = gameInfo.baseSpeed;
+                jumpParticles.Play();
+            }
+            else if (gameInfo.currAbility == "Speedy")
+            {
+                gameInfo.currJump = gameInfo.baseJumpHeight;
+                gameInfo.currSpeed = abilities.speedBoost + gameInfo.baseSpeed;
+                speedParticles.Play();
+            }
+        }
     }
 
     void Update()
