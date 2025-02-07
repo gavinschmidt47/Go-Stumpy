@@ -870,7 +870,7 @@ GameObject:
   - component: {fileID: 270945170}
   - component: {fileID: 270945171}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: invincibleToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

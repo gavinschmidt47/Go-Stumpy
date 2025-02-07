@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: GameInfoScriptableObject
   m_EditorClassIdentifier: 
   baseSpeed: 5
-  baseJumpHeight: 6.75
+  baseJumpHeight: 7
   currSpeed: 5
-  currJump: 6.75
+  currJump: 7
   abilityOn: 0
-  currAbility: 
+  currAbility: Jumpy
   invincible: 0
   jumpyH: 80
   jumpyS: 1
