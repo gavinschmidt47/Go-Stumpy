@@ -15,11 +15,11 @@ MonoBehaviour:
   baseSpeed: 5
   baseJumpHeight: 4
   currSpeed: 5
-  currJump: 5
-  abilityOn: 1
-  currAbility: Jumpy
-  invincible: 1
+  currJump: 4
+  abilityOn: 0
+  currAbility: 
+  invincible: 0
   jumpyH: 80
   jumpyS: 1
   speedyS: 4
-  paused: 1
+  paused: 0
