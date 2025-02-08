@@ -18,8 +18,10 @@ public class CameraController : MonoBehaviour
     {
         targetPosition = player.position + offset;
         currPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed);
+
         currPosition.x = Mathf.Clamp(currPosition.x, leftBottom.x, rightTop.x);
         currPosition.y = Mathf.Clamp(currPosition.y, leftBottom.y, rightTop.y);
+        
         transform.position = currPosition;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "GameInfo", menuName = "GameInfo", order = 0)]
 public class GameInfo : ScriptableObject {
@@ -24,7 +25,8 @@ public class GameInfo : ScriptableObject {
     public bool paused;
 
     //Functions
-    public void setCurrAbility(int ability) {
+    public void setCurrAbility(int ability) 
+    {
         switch (ability) {
             case 0:
                 currAbility = "";
@@ -41,7 +43,22 @@ public class GameInfo : ScriptableObject {
         }
     }
 
-    public void setInvincible(bool inv) {
+    public void setInvincible(bool inv) 
+    {
         invincible = inv;
+    }
+    
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    public void toMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuMain");
+        GameObject musicObject = GameObject.FindWithTag("Music");
+        if (musicObject != null)
+        {
+            Destroy(musicObject);
+        }
     }
 }

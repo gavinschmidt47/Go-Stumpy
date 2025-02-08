@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem suckParticles;
     public ParticleSystem jumpParticles;
     public ParticleSystem speedParticles;
+    public GameObject losePanel;
+    public GameObject gameController;
 
     //Private Variables
     private bool usingAbility = false;
@@ -193,7 +195,7 @@ public class PlayerController : MonoBehaviour
         // Determine which side was hit
         if (gameInfo.abilityOn && !gameInfo.invincible)   
         {
-            if (other.gameObject.CompareTag("Jumpy") || other.gameObject.CompareTag("Speedy"))
+            if (other.gameObject.CompareTag("Jumpy") || other.gameObject.CompareTag("Speedy") || other.gameObject.CompareTag("Boss") || other.gameObject.CompareTag("Acorn"))
             {
                 gameInfo.abilityOn = false;
                 ResetAbility();
@@ -202,22 +204,38 @@ public class PlayerController : MonoBehaviour
         else if (!gameInfo.invincible)
         {
             //need death
-            if (other.gameObject.CompareTag("Jumpy") || other.gameObject.CompareTag("Speedy"))
-                SceneManager.LoadScene("MenuMain");
+            if (other.gameObject.CompareTag("Jumpy") || other.gameObject.CompareTag("Speedy") || other.gameObject.CompareTag("Boss") || other.gameObject.CompareTag("Acorn"))
+            {
+                Death();
+            }
         }
         else if (gameInfo.invincible)
         {
-            if (other.gameObject.CompareTag("Jumpy") || other.gameObject.CompareTag("Speedy"))
+            if (other.gameObject.CompareTag("Jumpy") || other.gameObject.CompareTag("Speedy") || other.gameObject.CompareTag("Acorn"))
                 Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("KillZone"))
         {
-            //need death
-            SceneManager.LoadScene("MenuMain");
+            {
+                Death();
+            }
         }
         if (other.gameObject.CompareTag("BossStageChange"))
         {
             SceneManager.LoadScene("Boss");
         }
+    }
+
+    void Death()
+    {
+        Time.timeScale = 0;
+        
+        losePanel.SetActive(true);
+        gameController.GetComponent<GameController>().enabled = false;
+        
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        Destroy(gameObject);
     }
 }

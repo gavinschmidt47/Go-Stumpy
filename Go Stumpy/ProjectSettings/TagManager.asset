@@ -8,6 +8,10 @@ TagManager:
   - Speedy
   - KillZone
   - BossStageChange
+  - Boss
+  - Ground
+  - Acorn
+  - Music
   layers:
   - Default
   - TransparentFX

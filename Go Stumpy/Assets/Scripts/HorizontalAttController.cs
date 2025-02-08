@@ -8,6 +8,7 @@ public class HorizontalAttController : MonoBehaviour
     public float rotationalSpeed = 10.0f;
 
     private Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +21,17 @@ public class HorizontalAttController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+        }
+        else if (collision.gameObject.CompareTag("Boss"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
