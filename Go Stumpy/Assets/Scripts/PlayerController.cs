@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public GameObject losePanel;
     public GameObject gameController;
     public AudioSource playSound;
+    public SpriteRenderer _spriteRenderer;
 
     //Private Variables
     private bool usingAbility = false;
@@ -95,11 +96,13 @@ public class PlayerController : MonoBehaviour
         {
             faceDir = Vector2.right;
             suckParticles.transform.rotation = Quaternion.Euler(180, -90, 0);
+            _spriteRenderer.flipX = false;
         }
         else if (moveDirection.x < 0)
         {
             faceDir = Vector2.left;
             suckParticles.transform.rotation = Quaternion.Euler(0, -90, 0);
+            _spriteRenderer.flipX = true;
         }
     }
 

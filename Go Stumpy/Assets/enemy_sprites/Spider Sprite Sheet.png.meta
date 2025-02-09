@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 102a434afd2055947a9cac5681b86571
+guid: 6b4c8456ecdecde4f8b3a56ca5bec03f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: speedyrunningspright_0
+      name: Spider Sprite Sheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2400
-        width: 700
-        height: 600
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f5e9519a2bb41745850959eb18fcda0
-      internalID: 1368085324
+      spriteID: 4ba9102520ae6f448979dbeb4826bdf0
+      internalID: 1299043962
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: speedyrunningspright_1
+      name: Spider Sprite Sheet_1
       rect:
         serializedVersion: 2
-        x: 700
-        y: 2400
-        width: 700
-        height: 600
+        x: 64
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed98427a31ef81843909961d2fb1bb2e
-      internalID: 491516840
+      spriteID: e4077a376e67d7c429b92e4987c8d1cc
+      internalID: 1059842850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spider Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95271a9b3430d9a4f9bc9f4590794c68
+      internalID: -1789292204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spider Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9cbcecc02994184a87caa3a83ec2e5b
+      internalID: -347962836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spider Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 757cd2e67fcea4f4680ae547db068c18
+      internalID: -1662194081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spider Sprite Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7af538901e03cb8409807b1afec14290
+      internalID: 1573414197
       vertices: []
       indices: 
       edges: []
@@ -162,8 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      speedyrunningspright_0: 1368085324
-      speedyrunningspright_1: 491516840
+      Spider Sprite Sheet_0: 1299043962
+      Spider Sprite Sheet_1: 1059842850
+      Spider Sprite Sheet_2: -1789292204
+      Spider Sprite Sheet_3: -347962836
+      Spider Sprite Sheet_4: -1662194081
+      Spider Sprite Sheet_5: 1573414197
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

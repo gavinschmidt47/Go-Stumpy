@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ID = gameObject.tag;   
+        ID = gameObject.tag;
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
         player = GameObject.Find("Stumpy").transform;
@@ -42,7 +42,7 @@ public class EnemyController : MonoBehaviour
         moveDirection = (player.position - transform.position).normalized;
 
         if (active)
-        {    
+        {
             if (ID == "Jumpy")
             {
                 if (IsGrounded())
