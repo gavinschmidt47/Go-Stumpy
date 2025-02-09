@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem speedParticles;
     public GameObject losePanel;
     public GameObject gameController;
+    public AudioSource playSound;
 
     //Private Variables
     private bool usingAbility = false;
@@ -85,6 +86,8 @@ public class PlayerController : MonoBehaviour
         if (jump.triggered && Mathf.Abs(rb.velocity.y) < 0.001f)
         {
             rb.AddForce(Vector2.up * gameInfo.currJump, ForceMode2D.Impulse);
+            playSound.Play();
+
         }
         
         //Facing Direction
