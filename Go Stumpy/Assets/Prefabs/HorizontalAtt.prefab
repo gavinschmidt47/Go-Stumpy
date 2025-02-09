@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3582079696828324625}
   - component: {fileID: 8877644220085636431}
   - component: {fileID: 1937834898653665403}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HorizontalAtt
   m_TagString: Acorn
   m_Icon: {fileID: 0}
