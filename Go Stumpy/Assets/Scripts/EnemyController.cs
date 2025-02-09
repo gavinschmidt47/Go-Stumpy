@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     private float thisSpeed;
     private float thisJump;
     private bool active = false;
+    private bool flipped = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,23 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         moveDirection = (player.position - transform.position).normalized;
+
+        if (moveDirection.x > 0)
+        {
+            if (!flipped)
+            {
+                transform.Rotate(0, 180, 0);
+                flipped = true;
+            }
+        }
+        else
+        {
+            if (flipped)
+            {
+                transform.Rotate(0, 180, 0);
+                flipped = false;
+            }
+        }
 
         if (active)
         {
