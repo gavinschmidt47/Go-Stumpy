@@ -23,6 +23,9 @@ public class GameController : MonoBehaviour
     public Button ContinueButton;
     public ParticleSystem jumpParticles;
     public ParticleSystem speedParticles;
+    public GameObject invincibleText;
+    public GameObject jumpyText;
+    public GameObject speedyText;
 
     //Private Variables
     private bool firstOpt = true;
@@ -56,6 +59,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Pause
         if (pauseButton.triggered)
         {
             stumpy.GetComponent<PlayerController>().enabled = !(stumpy.GetComponent<PlayerController>().enabled);
@@ -69,6 +73,30 @@ public class GameController : MonoBehaviour
             }
         }
 
+        //Set Text
+        if (gameInfo.invincible)
+        {
+            invincibleText.SetActive(true);
+        }
+        else
+        {
+            invincibleText.SetActive(false);
+        }
+        if (gameInfo.currAbility == "Jumpy")
+        {
+            jumpyText.SetActive(true);
+            speedyText.SetActive(false);
+        }
+        else if (gameInfo.currAbility == "Speedy")
+        {
+            jumpyText.SetActive(false);
+            speedyText.SetActive(true);
+        }
+        else
+        {
+            jumpyText.SetActive(false);
+            speedyText.SetActive(false);
+        }
     }
 
     private void Pause()

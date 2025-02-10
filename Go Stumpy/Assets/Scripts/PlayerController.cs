@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 faceDir = Vector2.right;
     private float savedSpeed;
     private float savedJump;
+    private Animator animator;
+    private GameObject music;
     
 
     //Enable Input Actions
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
+        //Set Speed and Jump Or Abilities
         if (!gameInfo.abilityOn)
         {
             gameInfo.currJump = gameInfo.baseJumpHeight;
@@ -78,6 +81,12 @@ public class PlayerController : MonoBehaviour
                 speedParticles.Play();
             }
         }
+
+        //Get Animator
+        animator = GetComponent<Animator>();
+
+        //Get Music
+        music = GameObject.FindGameObjectWithTag("Music");
     }
 
     void Update()
@@ -90,19 +99,30 @@ public class PlayerController : MonoBehaviour
             playSound.Play();
 
         }
+
+        
+        //Animation
+        if (moveDirection != Vector2.zero && Mathf.Abs(rb.velocity.y) < 0.001f)
+        {
+            animator.SetBool("Moving", true);
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
+        }
         
         //Facing Direction
         if (moveDirection.x > 0)
         {
             faceDir = Vector2.right;
             suckParticles.transform.rotation = Quaternion.Euler(180, -90, 0);
-            _spriteRenderer.flipX = false;
+            _spriteRenderer.flipX = true;
         }
         else if (moveDirection.x < 0)
         {
             faceDir = Vector2.left;
             suckParticles.transform.rotation = Quaternion.Euler(0, -90, 0);
-            _spriteRenderer.flipX = true;
+            _spriteRenderer.flipX = false;
         }
     }
 
@@ -198,7 +218,7 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         
-        // Determine which side was hit
+        //Not Invincible
         if (gameInfo.abilityOn && !gameInfo.invincible)   
         {
             if (other.gameObject.CompareTag("Jumpy") || other.gameObject.CompareTag("Speedy") || other.gameObject.CompareTag("Boss") || other.gameObject.CompareTag("Acorn"))
@@ -209,12 +229,12 @@ public class PlayerController : MonoBehaviour
         }
         else if (!gameInfo.invincible)
         {
-            //need death
             if (other.gameObject.CompareTag("Jumpy") || other.gameObject.CompareTag("Speedy") || other.gameObject.CompareTag("Boss") || other.gameObject.CompareTag("Acorn"))
             {
                 Death();
             }
         }
+        //Invincible
         else if (gameInfo.invincible)
         {
             if (other.gameObject.CompareTag("Jumpy") || other.gameObject.CompareTag("Speedy") || other.gameObject.CompareTag("Acorn"))
@@ -226,6 +246,7 @@ public class PlayerController : MonoBehaviour
                 Death();
             }
         }
+        //Stage Change
         if (other.gameObject.CompareTag("BossStageChange"))
         {
             SceneManager.LoadScene("Boss");
@@ -234,14 +255,21 @@ public class PlayerController : MonoBehaviour
 
     void Death()
     {
+        //Pause Time
         Time.timeScale = 0;
         
+        //Set Panel
         losePanel.SetActive(true);
         gameController.GetComponent<GameController>().enabled = false;
         
+        //Set Cursor
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
+        //End Music
+        Destroy(music);
+
+        //Destroy Player
         Destroy(gameObject);
     }
 }
