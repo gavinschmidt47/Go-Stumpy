@@ -112,6 +112,9 @@ public class GameController : MonoBehaviour
         pausePanel.SetActive(true);
         optionsPanel.SetActive(false);
 
+        //Disable Player
+        stumpy.GetComponent<PlayerController>().enabled = false;
+
         //Resume Button
         resumeButton.onClick.AddListener(Unpause);
         if (firstOpt)
@@ -136,6 +139,10 @@ public class GameController : MonoBehaviour
         //Resume Button
         resumeButton.onClick.RemoveListener(Unpause);
         optionsButton.onClick.RemoveListener(Options);
+
+        //Enable Player
+        stumpy.GetComponent<PlayerController>().enabled = true;
+
 
         //New Abilities
         if (!gameInfo.abilityOn)
