@@ -269,6 +269,35 @@ public class PlayerController : MonoBehaviour
         //End Music
         Destroy(music);
 
+        //Disable Camera
+        GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        if (mainCamera != null)
+        {
+            mainCamera.GetComponent<CameraController>().enabled = false;
+        }
+
+        // Disable all EnemyControllers
+        GameObject[] jumpyEnemies = GameObject.FindGameObjectsWithTag("Jumpy");
+        GameObject[] speedyEnemies = GameObject.FindGameObjectsWithTag("Speedy");
+
+        foreach (GameObject enemy in jumpyEnemies)
+        {
+            EnemyController enemyController = enemy.GetComponent<EnemyController>();
+            if (enemyController != null)
+            {
+            enemyController.enabled = false;
+            }
+        }
+
+        foreach (GameObject enemy in speedyEnemies)
+        {
+            EnemyController enemyController = enemy.GetComponent<EnemyController>();
+            if (enemyController != null)
+            {
+            enemyController.enabled = false;
+            }
+        }
+
         //Destroy Player
         Destroy(gameObject);
     }
